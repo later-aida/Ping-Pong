@@ -17,16 +17,24 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Player(GameSprite):
-    def update(self):
+    def update_left(self):
         keys_pressed = key.get_pressed()
-        if keys_pressed[K_a] and self.rect.x > 5:
-            self.rect.x -= self.speed
-        if keys_pressed[K_d] and self.rect.x < 650:
-            self.rect.x += self.speed
+        if keys_pressed[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys_pressed[K_s] and self.rect.y < 420:
+            self.rect.y += self.speed
+    def update_right(self):
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys_pressed[K_DOWN] and self.rect.y < 420:
+            self.rect.y += self.speed
 
 
 
-# player = Player("rocket.png",80,420,5,40,80)
+
+player = Player("rac1.png",0,420,5,60,80)
+
 
 
 
@@ -54,6 +62,9 @@ while game:
             game = False
     if finish != True:
         window.blit(background,(0,0))
+    
+        player.update_left()
+        player.reset()
 
     display.update()#обновление содержимого окна на каждом шаге цикла\
     clock.tick(FPS)
