@@ -54,10 +54,10 @@ clock = time.Clock()
 FPS = 60
 font.init()
 font1 = font.SysFont("Arial", 30)
-font2 = font.SysFont("Arial", 80)
+font2 = font.SysFont("Arial", 50)
 
-lose_ = font2.render("YOU LOSE!", True,(255,0,0))
-win_ = font2.render("YOU WIN!", True,(0,225,0))
+lose_1 = font2.render("PLAYER 1 LOSE!", True,(180,0,0))
+lose_2 = font2.render("PLAYER 2 LOSE!", True,(180,0,0))
 
 while game:
     for e in event.get():
@@ -77,6 +77,12 @@ while game:
         if sprite.collide_rect(player1,ball) or sprite.collide_rect(player2,ball):
             speed_x *= -1
         ball.reset()
+        if ball.rect.x < 0:
+            finish = True
+            window.blit(lose_1, (200,200))
+        if ball.rect.x > 650:
+            finish = True
+            window.blit(lose_2, (200,200))
         
 
     display.update()#обновление содержимого окна на каждом шаге цикла\
