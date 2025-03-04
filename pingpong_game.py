@@ -35,7 +35,9 @@ class Player(GameSprite):
 
 player1 = Player("rac1.png",0,420,5,60,80)
 player2 = Player("rac2.png",640,420,5,60,80)
-
+ball = GameSprite("ball.png",350,250,0,50,50)
+speed_x = 3
+speed_y = 3
 
 
 
@@ -68,6 +70,14 @@ while game:
         player1.reset()
         player2.update_right()
         player2.reset()
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+        if ball.rect.y > 450 or ball.rect.y < 0:
+            speed_y *= -1
+        if sprite.collide_rect(player1,ball) or sprite.collide_rect(player2,ball):
+            speed_x *= -1
+        ball.reset()
+        
 
     display.update()#обновление содержимого окна на каждом шаге цикла\
     clock.tick(FPS)
