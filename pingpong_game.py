@@ -33,7 +33,8 @@ class Player(GameSprite):
 
 
 
-player = Player("rac1.png",0,420,5,60,80)
+player1 = Player("rac1.png",0,420,5,60,80)
+player2 = Player("rac2.png",640,420,5,60,80)
 
 
 
@@ -63,8 +64,10 @@ while game:
     if finish != True:
         window.blit(background,(0,0))
     
-        player.update_left()
-        player.reset()
+        player1.update_left()
+        player1.reset()
+        player2.update_right()
+        player2.reset()
 
     display.update()#обновление содержимого окна на каждом шаге цикла\
     clock.tick(FPS)
